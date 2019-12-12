@@ -1,3 +1,5 @@
+package util;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,7 +16,7 @@ import java.util.Map;
 public class PriorityQueue {
 
 	protected Map<Integer, Integer> location;
-	protected List<Pair<Integer, Integer>> heap;
+	public List<Pair<Integer, Integer>> heap;
 
 	private static final int ROOT_INDEX = 0;
 
@@ -32,24 +34,18 @@ public class PriorityQueue {
 		PriorityQueue queue = new PriorityQueue();
 
 
-		queue.push(30, -3);
-		queue.push(1, -5);
-		queue.push(4, -7);
-		queue.push(8, -1);
-		queue.push(3, -9);
-		queue.push(40, -2);
-		queue.pop();
-		queue.pop();
-		queue.changePriority(0, -2);
-		queue.pop();
+		queue.push(0, 1);
+		queue.push(100, 2);
+		queue.push(100, 3);
+		queue.push(100, 4);
+		queue.push(100, 5);
 
 		for (int i = 0; i < queue.size(); i++) {
 			System.out.print(queue.heap.get(i).priority);
 			System.out.print("\t");
 			System.out.println(queue.heap.get(i).element);
 		}
-		System.out.println(queue.location.toString());
-		System.out.print(queue.getPriority(-7));
+
 
 
 	}
@@ -98,10 +94,16 @@ public class PriorityQueue {
 	 */
 
 	// Jordan
-	public void pop() {
+	public Pair pop() {
 		//throw error if queue is empty
 		if (isEmpty()){
 			throw new AssertionError("Error: The queue cannot be empty.");
+		}
+		if (heap.size() == 1) {
+			Pair<Integer, Integer> node = heap.get(0);
+			location.clear();
+			heap.clear();
+			return node;
 		}
 		// swap the root pair and tail pair
     
@@ -109,11 +111,13 @@ public class PriorityQueue {
 		swap(ROOT_INDEX, tailIndex);
 
 		// remove the tail pair (the old root)
+		Pair<Integer, Integer> node = heap.get(tailIndex);
 		location.remove(heap.get(tailIndex).element);
 		heap.remove(tailIndex);
 
 		// call pushDown to put the new root in the correct position
 		pushDown(ROOT_INDEX);
+		return node;
 	}
 
 	/**

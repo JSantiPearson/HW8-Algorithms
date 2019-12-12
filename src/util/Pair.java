@@ -13,4 +13,10 @@ public class Pair<P, E> {
 		priority = p;
 		element = e;
 	}
+	@Override
+	public String toString() {
+		String str = "";
+		str = str + "<" + priority + ", " + element + ">";
+		return str;
+	}
 }
