@@ -29,7 +29,7 @@ import data.Reviewer;
  *
  */
 public class DataLoader {
-	private Map<Integer, Movie> movies;
+	public Map<Integer, Movie> movies;
 	private Map<Integer, Reviewer> reviewers;	
 	private Map<Integer, Integer> renumber;
 

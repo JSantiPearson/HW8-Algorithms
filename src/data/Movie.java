@@ -11,7 +11,7 @@ import java.util.Set;
  */
 public class Movie {
 	private int year;
-	private int movieId;
+	public int movieId;
 	private String title;	
 	private Map<Integer, Double> ratings;
 	private Set<String> genres;	
