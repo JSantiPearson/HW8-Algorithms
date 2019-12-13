@@ -12,7 +12,7 @@ import java.util.Set;
 public class Movie {
 	private int year;
 	public int movieId;
-	private String title;	
+	public String title;	
 	private Map<Integer, Double> ratings;
 	private Set<String> genres;	
 	
